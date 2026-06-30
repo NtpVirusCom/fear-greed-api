@@ -1,13 +1,28 @@
-import requests
+from playwright.sync_api import sync_playwright
+import json
 
-URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
+URL = "https://edition.cnn.com/markets/fear-and-greed"
 
-headers = {
-    "User-Agent": "Mozilla/5.0"
-}
+with sync_playwright() as p:
 
-r = requests.get(URL, headers=headers)
+    browser = p.chromium.launch(
+        headless=True
+    )
 
-print(r.status_code)
-print(r.headers.get("content-type"))
-print(r.text[:1000])
+    page = browser.new_page(
+        viewport={"width":1600,"height":900}
+    )
+
+    page.goto(
+        URL,
+        wait_until="networkidle",
+        timeout=120000
+    )
+
+    page.screenshot(path="page.png")
+
+    html = page.content()
+
+    print(html[:1000])
+
+    browser.close()
