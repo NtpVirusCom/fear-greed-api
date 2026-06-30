@@ -15,10 +15,17 @@ if not Path("history.json").exists():
 URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "https://edition.cnn.com/",
+    "Origin": "https://edition.cnn.com"
 }
 
 response = requests.get(URL, headers=HEADERS, timeout=30)
+
+print("STATUS:", response.status_code)
+print(response.text[:200])
+
 response.raise_for_status()
 
 data = response.json()
