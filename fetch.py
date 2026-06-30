@@ -1,28 +1,33 @@
 from playwright.sync_api import sync_playwright
+from bs4 import BeautifulSoup
 import json
 
 URL = "https://edition.cnn.com/markets/fear-and-greed"
 
 with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
 
-    browser = p.chromium.launch(
-        headless=True
-    )
-
-    page = browser.new_page(
-        viewport={"width":1600,"height":900}
-    )
-
-    page.goto(
-        URL,
-        wait_until="networkidle",
-        timeout=120000
-    )
-
-    page.screenshot(path="page.png")
+    page.goto(URL, wait_until="networkidle")
 
     html = page.content()
 
-    print(html[:1000])
-
     browser.close()
+
+soup = BeautifulSoup(html, "html.parser")
+
+print(soup.title.text)
+
+# หา element ที่มีคะแนน Fear & Greed
+# (ต้องตรวจสอบ selector จริงอีกครั้ง เพราะ CNN เปลี่ยนโครงสร้างได้)
+
+score = None
+rating = None
+
+data = {
+    "score": score,
+    "rating": rating
+}
+
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=2)
