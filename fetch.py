@@ -3,6 +3,15 @@ import requests
 from datetime import datetime, timezone
 from pathlib import Path
 
+# สร้าง data.json ถ้ายังไม่มี
+if not Path("data.json").exists():
+    Path("data.json").write_text("{}", encoding="utf-8")
+
+# สร้าง history.json ถ้ายังไม่มี
+if not Path("history.json").exists():
+    Path("history.json").write_text("[]", encoding="utf-8")
+
+
 URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
 
 HEADERS = {
