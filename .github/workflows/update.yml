@@ -1,36 +1,43 @@
 name: Update Fear Greed
 
 on:
-  schedule:
-    - cron: "0 * * * *"
 
   workflow_dispatch:
+
+  schedule:
+    - cron: "0 * * * *"
 
 permissions:
   contents: write
 
 jobs:
+
   update:
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    - uses: actions/checkout@v4
 
-      - run: pip install -r requirements.txt
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
 
-      - run: playwright install chromium
+    - run: pip install -r requirements.txt
 
-      - run: python fetch.py
+    - run: python fetch.py
 
-      - name: Commit
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+    - name: Commit
 
-          git add data.json
-          git diff --cached --quiet || git commit -m "Update Fear & Greed"
-          git push
+      run: |
+
+        git config user.name github-actions
+
+        git config user.email github-actions@github.com
+
+        git add data.json history.json
+
+        git diff --cached --quiet || git commit -m "Update data"
+
+        git push
