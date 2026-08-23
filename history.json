@@ -484,5 +484,14 @@
         "previous_1_week": 63.9714285714286,
         "previous_1_month": 43.3714285714286,
         "previous_1_year": 52.60000000000001
+    },
+    {
+        "updated": "2026-08-23T01:09:46.077929+00:00",
+        "score": 55.1714285714286,
+        "rating": "greed",
+        "previous_close": 52.4857142857143,
+        "previous_1_week": 63.9714285714286,
+        "previous_1_month": 43.3714285714286,
+        "previous_1_year": 52.60000000000001
     }
 ]
