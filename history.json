@@ -907,5 +907,14 @@
         "previous_1_week": 28.9714285714286,
         "previous_1_month": 39.142857142857146,
         "previous_1_year": 52.942857142857136
+    },
+    {
+        "updated": "2026-10-09T04:32:13.601579+00:00",
+        "score": 37.8857142857143,
+        "rating": "fear",
+        "previous_close": 37.8857142857143,
+        "previous_1_week": 39.9714285714286,
+        "previous_1_month": 38.2,
+        "previous_1_year": 48.62857142857143
     }
 ]
